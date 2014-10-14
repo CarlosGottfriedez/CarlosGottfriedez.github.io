@@ -1,0 +1,316 @@
+---
+title: "R-Funktionen"
+output:
+  html_document:
+    theme: united
+    toc: yes
+  pdf_document:
+    highlight: zenburn
+    keep_tex: yes
+    number_sections: yes
+    toc: no
+---
+#R-Funktionen
+Diese Seite listet all die R-Funktionen auf die ich schonmal benutzt habe.
+Ich versuche so weit es geht die ausgeführten Beispiele mit anzuzeigen.
+***
+
+Mit ? können wird die Dokumentation von R aufgerufen und weitere zusätzliche Informationen werden angezeigt.
+```{r}
+# zum Beispiel
+?row.names
+```
+
+
+```
+c, nchar, data, str, dim, names, head, and tail.
+```
+```{r}
+# zeigt alle Observations an
+row.names(mtcars)
+```
+
+
+***
+
+**Es folgen mehrere Beispiel mit R-Code**
+
+```{r}
+# Gibt die Werte der Variable mpg des Datenframes mtcars aus. (Also $ als Symbol).
+mtcars$mpg
+```
+
+##Funktionen die das Zentrum beschreiben
+```{r}
+# Gibt den Mittelwert der Daten an.
+mean(mtcars$mpg)  
+```
+```{r}
+# Gibt den Median der Daten an.
+median(mtcars$mpg)
+```
+```{r}
+# Überblick über alle Daten
+summary(cars)
+```
+
+##Funktionen um Datenframes zu laden
+```{r}
+#Zeigt das Verzeichnis an in welchen wir uns befinden.
+getwd() 
+``` 
+```
+#Wechsel des Verzeichnises setwd('~/Downloads') immer in **'' - Zeichen**.
+setwd('~/Downloads') 
+#cvs-Datei einlesen.
+read.csv('reddit.csv')
+```
+##Andere Funktionen
+
+```{r}
+# zeigt ein Subset
+subset(mtcars, mtcars$mpg<=25 & mtcars$wt<=2.581 )   
+```
+
+```{r}
+# Zeigt einen Überblick an
+summary(mtcars)
+```
+
+```{r}
+# neue Spalte mit year als überschrifft und 1974 für alle
+mtcars$year <- 1974    
+```
+
+```{r}
+# Spalte löschen
+mtcars <- subset(mtcars, select = -year)
+```
+
+```{r}
+# Ein Beispiel für Konditionen
+mtcars$wt
+cond <- mtcars$wt < 3
+cond
+mtcars$weight_class <- ifelse(cond, 'light', 'average')
+mtcars$weight_class
+cond <- mtcars$wt > 3.5
+mtcars$weight_class <- ifelse(cond, 'heavy', mtcars$weight_class)
+mtcars$weight_class
+```
+
+```{r}
+# entfernt code aus dem arbeitsbereich
+rm(cond)
+rm(efficient)
+```
+
+```{r}
+# zeigt die Anzahl der Fahrzeuge mit bestimmten Werten an
+table(mtcars$mpg)
+```
+```
+# Für Faktrone als Datentypen
+levels(reddit$age.range)
+```
+##qplot
+
+qplot is the basic plotting function in the ggplot2 package, designed to be familiar if you're used to plot from the base package.
+Parameter für qplot:
+
+`x = Variabelname`
+`data = Datenname`
+`xlim = Vektor(Von, Bis)`
+`binwidth = Balkendicke`
+`facet_wrap(~gender, ncol = 2) -- Aufteilen in Einzelne kleine Fenster`
+
+### Um eine Plot zu zeichnen
+```{r}
+#install.packages('ggplot2', dependencies = T)
+library(ggplot2)
+qplot(data= mtcars, x=wt)
+
+```
+
+
+## Datentypen
+
+@. Vektoren
+
+Ein Beispiel für Vektoren
+```{r}
+a <- c(1,2,5.3,6,-2,4) # numeric vector
+b <- c("one","two","three") # character vector
+c <- c(TRUE,TRUE,TRUE,FALSE,TRUE,FALSE) #logical vector
+```
+
+
+@. Matrizen
+
+Ein Beispiel für Matrizen 
+```{r}
+# generates 5 x 4 numeric matrix 
+y<-matrix(1:20, nrow=5,ncol=4)
+
+# another example
+cells <- c(1,26,24,68)
+rnames <- c("R1", "R2")
+cnames <- c("C1", "C2") 
+mymatrix <- matrix(cells, nrow=2, ncol=2, byrow=TRUE,
+  dimnames=list(rnames, cnames))
+mymatrix[]
+
+```
+(@) Arrays
+
+Sind wie Matrizen aufgebaut, nur sind mehrere Dimensionen möglich
+Arrays are similar to matrices but can have more than two dimensions. See help(array) for details.
+
+(@) Data Frames
+
+A data frame is more general than a matrix, in that different columns can have different modes (numeric, character, factor, etc.). This is similar to SAS and SPSS datasets.
+```{r}
+d <- c(1,2,3,4)
+e <- c("red", "white", "red", NA)
+f <- c(TRUE,TRUE,TRUE,FALSE)
+mydata <- data.frame(d,e,f)
+names(mydata) <- c("ID","Color","Passed") # variable names
+mydata
+```
+
+@. List
+
+An ordered collection of objects (components). A list allows you to gather a variety of (possibly unrelated) objects under one name.
+
+```{r}
+# example of a list with 4 components - 
+# a string, a numeric vector, a matrix, and a scaler 
+w <- list(name="Fred", mynumbers=a, mymatrix=y, age=5.3)
+```
+```
+# example of a list containing two lists 
+v <- c(list1,list2)
+```
+
+@. Factors
+
+Tell R that a variable is nominal by making it a factor. The factor stores the nominal values as a vector of integers in the range [ 1... k ] (where k is the number of unique values in the nominal variable), and an internal vector of character strings (the original values) mapped to these integers.
+
+  + Nominale Variablen
+```{r}
+# variable gender with 20 "male" entries and 
+# 30 "female" entries 
+gender <- c(rep("male",20), rep("female", 30)) 
+gender <- factor(gender) 
+# stores gender as 20 1s and 30 2s and associates
+# 1=female, 2=male internally (alphabetically)
+# R now treats gender as a nominal variable 
+summary(gender)
+
+```
+
+
+  + Ordinale Variablen
+
+An ordered factor is used to represent an ordinal variable.
+```{r}
+# variable rating coded as "large", "medium", "small'
+rating <- c(rep("large"), rep("medium"), rep("small"))
+rating <- ordered(rating)
+
+summary(rating)
+# recodes rating to 1,2,3 and associates
+# 1=large, 2=medium, 3=small internally
+# R now treats rating as ordinal
+```
+
+R will treat factors as nominal variables and ordered factors as ordinal variables in statistical proceedures and graphical analyses. You can use options in the factor( ) and ordered( ) functions to control the mapping of integers to strings (overiding the alphabetical ordering). You can also use factors to create value labels. For more on factors see the UCLA page.
+
+
+```{r}
+length(mtcars) # number of the variables or components
+str(mtcars)    # structure of an object 
+class(mtcars$wt)  # class or type of an object
+class(mtcars) # many options
+names(mtcars) # names of the Variables
+
+mtcars     # prints the object mtcars
+ls()   # list current objects
+
+```
+
+
+```
+c(object,object,...)       # combine objects into a vector
+cbind(object, object, ...) # combine objects as columns
+rbind(object, object, ...) # combine objects as rows 
+
+newobject <- edit(object) # edit copy and save as newobject 
+fix(object)               # edit in place
+
+```
+
+#Tabellen
+
+Zum Einbinden von Tabellen eignet sich R-Markdown ebenfalls,
+ess muss nur die Tabelle in der Datei haben 
+ein Beispiel:
+```
+man kann die Layouts verändern, wenn man dies in die Meta daten der Datei schreibt
+
+rmarkdown::tufte_handout:
+  highlight: zenburn
+  
+wenn man die Folgenden Daten im Chunkout schreibt wird die Tabele im R ausgeführt.
+
+library(xtable)
+options(xtable.comment = FALSE)
+options(xtable.booktabs = TRUE)
+xtable(head(mtcars[, 1:6]), caption = "First rows of mtcars")
+
+```
+
+## Weitere Einstellungen für die R-Chunks
+
+All diese Einstellungen werden hier `{r, echo=FALSE}` im R-Chunk verändert.
+
+### Source Code Display
+
+`echo:` (TRUE; logical or numeric) whether to include R source code in the output file; besides TRUE/FALSE which completely turns on/off the source code, we can also use a numeric vector to select which R expression(s) to echo in a chunk, e.g. echo=2:3 means only echo the 2nd and 3rd expressions, and echo=-4 means to exclude the 4th expression.
+
+`results:` ('markup'; character) takes three possible values:
+
+`markup`: mark up the results using the output hook, e.g. put results in a special LaTeX environment.
+`asis`: output as-is, i.e., write raw results from R into the output document.
+`hide` hide results; this option only applies to normal R output (not warnings, messages or errors).
+note markup and asis are equivalent to verbatim and tex in Sweave respectively (you can still use the latter two, but they can be misleading, e.g., verbatim does not really mean verbatim in R, and tex seems to be restricted to LaTeX).
+
+###Plots
+
+`fig.width, fig.height:` (both are 7; numeric) width and height of the plot, to be used in the graphics device (in inches) and have to be numeric
+
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+##Funktionen für das Setup des Pdf´s unter R-Studion 
+
+###Code Evaluation
+
+`eval`: (TRUE; logical) whether to evaluate the code chunk.
+
+###Code Decoration
+
+`prompt`: (FALSE; logical) whether to add the prompt characters in the R code (see prompt and continue in ?base::options; note that adding prompts can make it difficult for readers to copy R code from the output, so `prompt=FALSE` 
+may be a better choice.
+
+
+
+####So macht man links
+```
+[Udacity website](https://www.udacity.com/course/viewer#!/c-ud651/l-729069797/e-804129319/m-811719066)
+```
+*This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.*
