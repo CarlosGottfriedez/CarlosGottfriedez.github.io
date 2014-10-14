@@ -6,7 +6,7 @@ output: html_document
 
 * [Udacity website](https://www.udacity.com/course/viewer#!/c-ud651/l-729069797/e-804129319/m-811719066)
 
-* [R Programming](/Users/user/CarlosGottfriedez.github.io/R-File/R.html)
+* [R Programming](CarlosGottfriedez.github.io/R-File/R.html)
 
 * [Terminal Programming](/Users/user/AllGitHub/ProgrammingKnowledge/Terminal_Programming.html)
 
