@@ -1,3 +1,17 @@
+---
+title: "Git-Funktionen"
+output:
+  html_document:
+    keep_tex: yes
+    theme: united
+    toc: yes
+  pdf_document:
+    highlight: zenburn
+    keep_tex: yes
+    number_sections: yes
+    toc: yes
+---
+
 # Git-Funktionen
 
 
