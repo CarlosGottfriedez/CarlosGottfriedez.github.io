@@ -1,0 +1,28 @@
+---
+title: "DatenBasis"
+output:
+  html_document:
+    keep_tex: yes
+    theme: united
+    toc: yes
+  pdf_document:
+    highlight: zenburn
+    keep_tex: yes
+    number_sections: yes
+    toc: yes
+---
+
+# Daten als Grundlage nicht Texte
+Jeder Arzt produziert Daten in dem er Diagnosen stellt oder allgemeine Einschätzungen trifft beispielsweise wenn es um den weiteren Behandlungsplan geht. Diese Einschätzungen werden mündlich oder schrifftlich in Form z.B. eines Befundes festgehalten. Diese Befunde werden von anderen Kollegen, vom Patienten selbst oder von Dritten gelesen und beurteilt. 
+Im Verlauf einer Behandlung werden immer mehr Daten in Form von Texten produziert, die schlussendlich wieder von Menschen interpretiert und verstanden werden müssen.
+Wäre es nicht einfacher, wenn der Arzt als eine Instanz angesehen werden kann die bei entsprechender Eignung von einer endlichen Menge an Untersuchungen spezielle Daten erheben kann.
+So kann man sich, wie ich denke, auf ein Datenschemata speziell für jede Untersuchungen die es in der Medizin gibt und es jemals geben wird einigen und dies im Laufe der Zeit auch anpassen. 
+Beispielsweise kann man für eine Röntgenuntersuchung eine bestimmte endliche Menge an Variabeln (Attributen) definieren die bei der entsprechenden Untersuchung verifiziert werden "können".
+
+```{r}
+# Hier kann eine Tabelle angzeigt werden, die das Beispiel illustiert.
+
+```
+
+Auf dieser Datengrundlage können dann Befunde, Analysen, Dokumentationen, Berichte erstellt werden und eventuell automatisiert werden.
+So ist nicht mehr der von Mensch geschriebene Text die Grundlage sondern die Daten die vom Menschen oder wem auch immer erzeugt wurden 

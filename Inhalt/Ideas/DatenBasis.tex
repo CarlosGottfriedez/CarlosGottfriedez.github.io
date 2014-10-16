@@ -1,0 +1,94 @@
+\documentclass[]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+    \usepackage{xltxtra,xunicode}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use microtype if available
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+\usepackage[margin=1in]{geometry}
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={},
+            pdftitle={DatenBasis},
+            colorlinks=true,
+            citecolor=blue,
+            urlcolor=blue,
+            linkcolor=magenta,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\setcounter{secnumdepth}{5}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+\setlength{\droptitle}{-2em}
+  \title{DatenBasis}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{}
+  \preauthor{}\postauthor{}
+  \date{}
+  \predate{}\postdate{}
+
+
+
+
+\begin{document}
+
+\maketitle
+
+
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\section{Daten als Grundlage nicht
+Texte}\label{daten-als-grundlage-nicht-texte}
+
+Jeder Arzt produziert Daten in dem er Diagnosen stellt oder allgemeine
+Einschätzungen trifft beispielsweise wenn es um den weiteren
+Behandlungsplan geht. Diese Einschätzungen werden mündlich oder
+schrifftlich in Form z.B. eines Befundes festgehalten. Diese Befunde
+werden von anderen Kollegen, vom Patienten selbst oder von Dritten
+gelesen und beurteilt. Im Verlauf einer Behandlung werden immer mehr
+Daten in Form von Texten produziert, die schlussendlich wieder von
+Menschen interpretiert und verstanden werden müssen. Wäre es nicht
+einfacher, wenn der Arzt als eine Instanz angesehen werden kann die bei
+entsprechender Eignung von einer endlichen Menge an Untersuchungen
+spezielle Daten erheben kann. So kann man sich, wie ich denke, auf ein
+Datenschemata speziell für jede Untersuchungen die es in der Medizin
+gibt und es jemals geben wird einigen und dies im Laufe der Zeit auch
+anpassen. Beispielsweise kann man für eine Röntgenuntersuchung eine
+bestimmte endliche Menge an Variabeln (Attributen) definieren die bei
+der entsprechenden Untersuchung verifiziert werden ``können''. Auf
+dieser Datengrundlage können dann Befunde, Analysen, Dokumentationen,
+Berichte erstellt werden und eventuell automatisiert werden. So ist
+nicht mehr der von Mensch geschriebene Text die Grundlage sondern die
+Daten die vom Menschen oder wem auch immer erzeugt wurden
+
+\end{document}
